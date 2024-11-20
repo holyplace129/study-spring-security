@@ -7,6 +7,7 @@ import com.security.springsecurity.user.domain.repository.UserRepository;
 import com.security.springsecurity.user.presentation.dto.request.SignInRequest;
 import com.security.springsecurity.user.presentation.dto.request.SignUpRequest;
 import com.security.springsecurity.user.presentation.dto.response.SignUpResponse;
+import com.security.springsecurity.user.presentation.dto.response.UserDetailResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -45,7 +46,7 @@ public class UserService {
         }
     }
 
-    public SignUpResponse signUpUser(SignUpRequest signUpRequest) {
+    public UserDetailResponse signUpUser(SignUpRequest signUpRequest) {
         String encodePassword = passwordEncoder.encode(signUpRequest.getPassword());
 
         User user = User.builder()
@@ -54,6 +55,6 @@ public class UserService {
                 .build();
 
         User saveUser = userRepository.save(user);
-        return SignUpResponse.of(saveUser);
+        return UserDetailResponse.of(saveUser);
     }
 }

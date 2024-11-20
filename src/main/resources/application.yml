@@ -1,0 +1,16 @@
+spring:
+  # DB??
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:filterdb
+    username: sa
+    password:
+
+  # JPA
+  jpa:
+    defer-datasource-initialization: true
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+      generate-ddl: true
+      dialect: org.hibernate.dialect.MariaDBDialect

@@ -56,13 +56,11 @@ public class JwtUtil {
     private TokenResponse createTokenResponse(User user) throws JsonProcessingException {
         Subject atkSubject = Subject.atk(
                 user.getId(),
-                user.getName(),
                 user.getEmail(),
                 user.getAuthority()
         );
         Subject rtkSubject = Subject.rtk(
                 user.getId(),
-                user.getName(),
                 user.getEmail(),
                 user.getAuthority()
         );

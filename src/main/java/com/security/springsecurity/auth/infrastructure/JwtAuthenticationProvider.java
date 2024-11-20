@@ -36,11 +36,9 @@ public class JwtAuthenticationProvider implements AuthenticationProvider {
 
                 String email = subject.getEmail();
                 String authorities = subject.getAuthority();
-                String employeeName = subject.getName();
 
                 return new UsernamePasswordAuthenticationToken(
                         email,
-                        employeeName,
                         AuthorityUtils
                                 .commaSeparatedStringToAuthorityList(authorities)
                 );

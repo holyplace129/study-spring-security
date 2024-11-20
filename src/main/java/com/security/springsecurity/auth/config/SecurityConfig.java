@@ -79,8 +79,7 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authenticationProvider(jwtAuthenticationProvider)
                 .authorizeHttpRequests(requests -> {
-                    requests.requestMatchers("/auth/signin", "auth/signup", "/auth/renew",
-                                    "/api/readcheck/**", "/h2-console/**").permitAll()
+                    requests.requestMatchers("/auth/signin", "auth/signup", "/h2-console/**").permitAll()
                             .anyRequest().authenticated();
                 });
 

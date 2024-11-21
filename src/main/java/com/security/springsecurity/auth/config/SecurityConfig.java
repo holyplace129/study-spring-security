@@ -3,7 +3,7 @@ package com.security.springsecurity.auth.config;
 import com.security.springsecurity.auth.infrastructure.BearerAuthorizationExtractor;
 import com.security.springsecurity.auth.infrastructure.JwtAuthenticationFilter;
 import com.security.springsecurity.auth.infrastructure.JwtAuthenticationProvider;
-import com.security.springsecurity.auth.infrastructure.OAuth2Service;
+import com.security.springsecurity.oauth.service.OAuth2Service;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -58,6 +58,7 @@ public class SecurityConfig {
         JwtAuthenticationFilter jwtAuthenticationFilter = jwtAuthenticationFilter(authenticationManager);
 
         http
+                .logout(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .csrf(AbstractHttpConfigurer::disable)
@@ -81,7 +82,7 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authenticationProvider(jwtAuthenticationProvider)
                 .authorizeHttpRequests(requests -> {
-                    requests.requestMatchers("/auth/signin", "auth/signup", "/h2-console/**", "/", "index.html", "/oauthInfo").permitAll()
+                    requests.requestMatchers("/auth/signin", "auth/signup", "/h2-console/**", "/**", "index.html", "/oauthInfo").permitAll()
                             .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                             .anyRequest().authenticated();
                 })

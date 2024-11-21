@@ -11,11 +11,11 @@ public class UserDetailResponse {
     private final Long id;
     private final String email;
     private final String authority;
-    private final Provider provider;
+    private final String provider;
     private final Boolean isDeleted;
 
     @Builder
-    public UserDetailResponse(Long id, String email, String authority, Provider provider, Boolean isDeleted) {
+    public UserDetailResponse(Long id, String email, String authority, String provider, Boolean isDeleted) {
         this.id = id;
         this.email = email;
         this.authority = authority;

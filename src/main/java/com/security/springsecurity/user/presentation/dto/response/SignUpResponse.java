@@ -10,9 +10,9 @@ public class SignUpResponse {
     private final Long id;
     private final String email;
     private final String authority;
-    private final Provider provider;
+    private final String provider;
 
-    private SignUpResponse(Long id, String email, String authority, Provider provider) {
+    private SignUpResponse(Long id, String email, String authority, String provider) {
         this.id = id;
         this.email = email;
         this.authority = authority;

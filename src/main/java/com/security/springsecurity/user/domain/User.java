@@ -1,9 +1,6 @@
 package com.security.springsecurity.user.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,11 +22,15 @@ public class User {
 
     private Boolean isDeleted;
 
+    @Enumerated(EnumType.STRING)
+    private Provider provider;
+
     @Builder
-    public User(String email, String password, String authority, Boolean isDeleted) {
+    public User(String email, String password, String authority, Boolean isDeleted, Provider provider) {
         this.email = email;
         this.password = password;
         this.authority = authority;
         this.isDeleted = isDeleted;
+        this.provider = provider;
     }
 }

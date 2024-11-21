@@ -3,6 +3,7 @@ package com.security.springsecurity.auth.config;
 import com.security.springsecurity.auth.infrastructure.BearerAuthorizationExtractor;
 import com.security.springsecurity.auth.infrastructure.JwtAuthenticationFilter;
 import com.security.springsecurity.auth.infrastructure.JwtAuthenticationProvider;
+import com.security.springsecurity.auth.infrastructure.OAuth2Service;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -33,6 +34,7 @@ public class SecurityConfig {
     private final BearerAuthorizationExtractor extractor;
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
     private final AuthenticationConfiguration authenticationConfiguration;
+    private final OAuth2Service oAuth2Service;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -79,9 +81,15 @@ public class SecurityConfig {
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .authenticationProvider(jwtAuthenticationProvider)
                 .authorizeHttpRequests(requests -> {
-                    requests.requestMatchers("/auth/signin", "auth/signup", "/h2-console/**").permitAll()
+                    requests.requestMatchers("/auth/signin", "auth/signup", "/h2-console/**", "/", "index.html", "/oauthInfo").permitAll()
+                            .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                             .anyRequest().authenticated();
-                });
+                })
+                .oauth2Login()
+                .defaultSuccessUrl("/oauthInfo", true)
+                .userInfoEndpoint()
+                .userService(oAuth2Service)
+        ;
 
         return http.build();
     }

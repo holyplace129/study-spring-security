@@ -41,10 +41,9 @@ spring:
           kakao:
             client-id: ${KAKAO_KEY}
             redirect-uri: http://localhost:8080/login/oauth2/code/kakao
-            client-authentication-method: POST
             authorization-grant-type: authorization_code
-            scope: profile_nickname, profile_image
             client-name: Kakao
+            scope: profile_nickname, profile_image, account_email
 
         provider:
           naver:

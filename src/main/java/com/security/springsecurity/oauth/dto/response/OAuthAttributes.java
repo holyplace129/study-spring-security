@@ -27,8 +27,15 @@ public enum OAuthAttributes {
 
     KAKAO("kakao", (attribute) -> {
 
-        Map<String, Object> account = (Map) attribute.get("profile_nickname");
+        Map<String, Object> account = (Map) attribute.get("kakao_account");
+        if (account == null) {
+            throw new IllegalArgumentException("account_email missing");
+        }
+
         Map<String, String> profile = (Map) account.get("profile");
+        if (profile == null) {
+            throw new IllegalArgumentException("profile missing");
+        }
 
         UserProfile userProfile = new UserProfile();
         userProfile.setName(profile.get("nickname"));

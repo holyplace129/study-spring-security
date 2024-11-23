@@ -6,7 +6,7 @@
 ![image](https://github.com/user-attachments/assets/78f9682c-8883-4e32-9d12-e41847e44f7e)
 
 ## 구글 ##
-![image](https://github.com/user-attachments/assets/e4346b61-d06c-4089-a96d-8a4b55b4593d)
+![image](https://github.com/user-attachments/assets/2a40d5a7-06c1-4c88-9fa2-c8b0af59f697)
 ![image](https://github.com/user-attachments/assets/d68819bc-5ab2-4859-b46f-ded1ff899a6b)
 
 ## 네이버 ##
@@ -19,4 +19,4 @@
 
 
 ## 가입 ##
-![image](https://github.com/user-attachments/assets/bb14ecdc-f997-418b-873e-d7982b2e72a1)
+![image](https://github.com/user-attachments/assets/f5696b28-0386-48ce-8e3f-2e4ffbc180fd)

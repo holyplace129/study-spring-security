@@ -1,4 +1,4 @@
-# study-spring-security
+# study-spring-security-jwt-oauth2
 
 # 결과 #
 

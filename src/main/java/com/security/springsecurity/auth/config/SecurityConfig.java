@@ -3,6 +3,7 @@ package com.security.springsecurity.auth.config;
 import com.security.springsecurity.auth.infrastructure.BearerAuthorizationExtractor;
 import com.security.springsecurity.auth.infrastructure.JwtAuthenticationFilter;
 import com.security.springsecurity.auth.infrastructure.JwtAuthenticationProvider;
+import com.security.springsecurity.auth.infrastructure.OAuth2SuccessHandler;
 import com.security.springsecurity.oauth.service.OAuth2Service;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,7 @@ public class SecurityConfig {
     private final JwtAuthenticationProvider jwtAuthenticationProvider;
     private final AuthenticationConfiguration authenticationConfiguration;
     private final OAuth2Service oAuth2Service;
+    private final OAuth2SuccessHandler oAuth2SuccessHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -86,10 +88,12 @@ public class SecurityConfig {
                             .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                             .anyRequest().authenticated();
                 })
-                .oauth2Login()
-                .defaultSuccessUrl("/oauthInfo", true)
-                .userInfoEndpoint()
-                .userService(oAuth2Service)
+                .oauth2Login(oauth2 -> oauth2
+                        .successHandler(oAuth2SuccessHandler)
+                        .userInfoEndpoint(userInfo -> userInfo.userService(oAuth2Service)))
+//                .defaultSuccessUrl("/oauthInfo", true)
+//                .userInfoEndpoint()
+//                .userService(oAuth2Service)
         ;
 
         return http.build();

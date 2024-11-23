@@ -151,6 +151,4 @@ public class JwtUtil {
             throw new BadCredentialsException("잘못된 토큰입니다.");
         }
     }
-
-
 }
